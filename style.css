@@ -1,0 +1,102 @@
+/* ==================== CYBERSAFE CUSTOM STYLES ==================== */
+
+/* Import Google Fonts (Alternative fallback if not linked in HTML) */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Quicksand:wght@500;600;700&display=swap');
+
+/* Base Styles */
+body {
+    font-family: 'Outfit', sans-serif;
+    background: linear-gradient(135deg, #fff0f5 0%, #f3e5f5 50%, #e8f4f8 100%);
+    min-height: 100vh;
+    color: #4a3b5c;
+    overflow-x: hidden;
+}
+
+/* Cute / Quicksand Font Utility */
+.font-cute {
+    font-family: 'Quicksand', sans-serif;
+}
+
+/* Glassmorphism Card Style */
+.glass-card {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 2px solid rgba(255, 183, 197, 0.4);
+    box-shadow: 0 10px 30px rgba(147, 112, 219, 0.08);
+}
+
+.glass-card:hover {
+    border-color: rgba(255, 183, 197, 0.7);
+    box-shadow: 0 15px 35px rgba(147, 112, 219, 0.15);
+}
+
+/* Girly Vibrant Gradients */
+.girly-gradient {
+    background: linear-gradient(135deg, #ffb7c5 0%, #da70d6 50%, #ba55d3 100%);
+}
+
+.girly-gradient:hover {
+    opacity: 0.95;
+    box-shadow: 0 4px 15px rgba(218, 112, 214, 0.4);
+}
+
+.girly-text-gradient {
+    background: linear-gradient(135deg, #da70d6, #9370db, #ff69b4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Custom Smooth Transitions */
+.transition-all {
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+}
+
+/* Custom Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #fff0f5;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ffb7c5;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #da70d6;
+}
+
+/* Floating Animation for Decorative Elements */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-8px) rotate(1deg);
+    }
+}
+
+.floating-element {
+    animation: float 5s ease-in-out infinite;
+}
+
+/* Interactive Quiz & Password Lab Enhancements */
+.quiz-opt-btn {
+    transition: all 0.2s ease-in-out;
+}
+
+.quiz-opt-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    border-color: #ffb7c5;
+}
+
+/* Modal Animation Helpers */
+#modalBox {
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.2s ease-in-out;
+}
