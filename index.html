@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberSafe ✨ | Student Cybersecurity Awareness</title>
+
+    <meta name="google-site-verification" content="XXNPtwf2kR3fv8EWIrAQQLBaUo_BKKhCuKM2fsqgkBI" />
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Quicksand & Outfit -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Tailwind Custom Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pastelPink: '#ffd1dc',
+                        pastelLavender: '#e6e6fa',
+                        pastelMint: '#d5f4e6',
+                        pastelPeach: '#ffe5b4',
+                        pastelBlue: '#d4f0fc',
+                        blush: '#ffb7c5',
+                        deepLavender: '#9370db',
+                        darkPurple: '#4a3b5c'
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        cute: ['Quicksand', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: linear-gradient(135deg, #fff0f5 0%, #f3e5f5 50%, #e8f4f8 100%);
+            min-height: 100vh;
+            color: #4a3b5c;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 2px solid rgba(255, 183, 197, 0.4);
+            box-shadow: 0 10px 30px rgba(147, 112, 219, 0.08);
+        }
+        .girly-gradient {
+            background: linear-gradient(135deg, #ffb7c5 0%, #da70d6 50%, #ba55d3 100%);
+        }
+        .girly-text-gradient {
+            background: linear-gradient(135deg, #da70d6, #9370db, #ff69b4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fff0f5;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ffb7c5;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #da70d6;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- Notification Banner / Custom Modal Container -->
+    <div id="modalContainer" class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm hidden">
+        <div class="glass-card p-6 rounded-3xl max-w-md w-full mx-4 shadow-2xl transform transition-all scale-95 opacity-0" id="modalBox">
+            <div class="text-center">
+                <div id="modalIcon" class="text-4xl mb-3 text-pink-500">✨</div>
+                <h3 id="modalTitle" class="text-xl font-bold text-darkPurple font-cute mb-2">Notice</h3>
+                <p id="modalMessage" class="text-gray-600 mb-6">Message goes here...</p>
+                <button onclick="closeModal()" class="girly-gradient text-white px-6 py-2.5 rounded-full font-bold shadow-md hover:opacity-90 transition">Got it, Bestie! 💕</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-pink-100 px-4 lg:px-12 py-3.5 transition-all">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <!-- Logo -->
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('home')">
+                <div class="w-10 h-10 rounded-full girly-gradient flex items-center justify-center text-white shadow-md text-lg">
+                    <i class="fa-solid fa-shield-heart"></i>
+                </div>
+                <div>
+                    <span class="text-2xl font-bold font-cute girly-text-gradient">CyberSafe</span>
+                    <span class="text-xs bg-pink-100 text-pink-600 px-2 py-0.5 rounded-full block font-medium">✨ Student Edition</span>
+                </div>
+            </div>
+
+            <!-- Desktop Navigation Links -->
+            <nav class="hidden md:flex items-center space-x-1 lg:space-x-2 font-medium text-gray-700">
+                <button onclick="switchTab('home')" class="nav-btn px-4 py-2 rounded-full transition hover:bg-pink-50 hover:text-pink-600 active-tab" data-target="home">
+                    <i class="fa-solid fa-house-chimney mr-1.5"></i> Home
+                </button>
+                <button onclick="switchTab('modules')" class="nav-btn px-4 py-2 rounded-full transition hover:bg-pink-50 hover:text-pink-600" data-target="modules">
+                    <i class="fa-solid fa-book-open-reader mr-1.5"></i> Modules
+                </button>
+                <button onclick="switchTab('checker')" class="nav-btn px-4 py-2 rounded-full transition hover:bg-pink-50 hover:text-pink-600" data-target="checker">
+                    <i class="fa-solid fa-key mr-1.5"></i> Password Lab
+                </button>
+                <button onclick="switchTab('quiz')" class="nav-btn px-4 py-2 rounded-full transition hover:bg-pink-50 hover:text-pink-600" data-target="quiz">
+                    <i class="fa-solid fa-puzzle-piece mr-1.5"></i> Quiz Zone
+                </button>
+                <button onclick="switchTab('ethics-hub')" class="nav-btn px-4 py-2 rounded-full transition hover:bg-pink-50 hover:text-pink-600" data-target="ethics-hub">
+                    <i class="fa-solid fa-scale-balanced mr-1.5"></i> Cyber Laws & Ethics
+                </button>
+                <button onclick="switchTab('admin')" class="nav-btn px-4 py-2 rounded-full transition hover:bg-pink-50 hover:text-pink-600" data-target="admin">
+                    <i class="fa-solid fa-sliders mr-1.5"></i> Admin
+                </button>
+            </nav>
+
+            <!-- User Profile / Auth Quick Pill -->
+            <div class="flex items-center space-x-3">
+                <div id="userBadge" class="hidden sm:flex items-center space-x-2 bg-pink-50 px-3 py-1.5 rounded-full border border-pink-200">
+                    <div class="w-6 h-6 rounded-full bg-purple-300 flex items-center justify-center text-xs text-white font-bold" id="userInitial">S</div>
+                    <span class="text-xs font-semibold text-gray-700" id="userNameDisplay">Student User</span>
+                </div>
+                <button onclick="openLoginModal()" class="girly-gradient text-white px-4 py-2 rounded-full font-semibold text-sm shadow-md hover:opacity-90 transition transform hover:scale-105">
+                    <i class="fa-solid fa-user-astronaut mr-1"></i> Join / Login
+                </button>
+                <!-- Mobile Menu Toggle -->
+                <button onclick="toggleMobileMenu()" class="md:hidden text-gray-700 p-2 text-xl">
+                    <i class="fa-solid fa-bars" id="mobileMenuIcon"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Nav Menu -->
+        <div id="mobileMenu" class="hidden md:hidden pt-4 pb-2 border-t border-pink-100 mt-3 flex flex-col space-y-2">
+            <button onclick="switchTab('home'); toggleMobileMenu();" class="text-left px-4 py-2 rounded-xl hover:bg-pink-50 text-gray-700 font-medium">
+                <i class="fa-solid fa-house-chimney mr-2 text-pink-500"></i> Home
+            </button>
+            <button onclick="switchTab('modules'); toggleMobileMenu();" class="text-left px-4 py-2 rounded-xl hover:bg-pink-50 text-gray-700 font-medium">
+                <i class="fa-solid fa-book-open-reader mr-2 text-pink-500"></i> Modules
+            </button>
+            <button onclick="switchTab('checker'); toggleMobileMenu();" class="text-left px-4 py-2 rounded-xl hover:bg-pink-50 text-gray-700 font-medium">
+                <i class="fa-solid fa-key mr-2 text-pink-500"></i> Password Lab
+            </button>
+            <button onclick="switchTab('quiz'); toggleMobileMenu();" class="text-left px-4 py-2 rounded-xl hover:bg-pink-50 text-gray-700 font-medium">
+                <i class="fa-solid fa-puzzle-piece mr-2 text-pink-500"></i> Quiz Zone
+            </button>
+            <button onclick="switchTab('ethics-hub'); toggleMobileMenu();" class="text-left px-4 py-2 rounded-xl hover:bg-pink-50 text-gray-700 font-medium">
+                <i class="fa-solid fa-scale-balanced mr-2 text-pink-500"></i> Cyber Laws & Ethics
+            </button>
+            <button onclick="switchTab('admin'); toggleMobileMenu();" class="text-left px-4 py-2 rounded-xl hover:bg-pink-50 text-gray-700 font-medium">
+                <i class="fa-solid fa-sliders mr-2 text-pink-500"></i> Admin Dashboard
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow max-w-7xl mx-auto w-full px-4 lg:px-12 py-8">
+
+        <!-- ==================== TAB 1: HOME ==================== -->
+        <section id="tab-home" class="tab-content space-y-12">
+            <!-- Hero Section -->
+            <div class="glass-card rounded-3xl p-8 lg:p-12 relative overflow-hidden flex flex-col lg:flex-row items-center justify-between">
+                <!-- Background decorative floating circles -->
+                <div class="absolute -top-12 -right-12 w-64 h-64 rounded-full bg-pink-200/50 blur-3xl pointer-events-none"></div>
+                <div class="absolute -bottom-12 -left-12 w-64 h-64 rounded-full bg-purple-200/40 blur-3xl pointer-events-none"></div>
+                
+                <div class="lg:w-7/12 z-10 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center space-x-2 bg-pink-100 text-pink-700 px-3.5 py-1 rounded-full text-xs font-bold tracking-wide uppercase">
+                        <i class="fa-solid fa-sparkles"></i> <span>Stay Cute, Stay Secure</span>
+                    </div>
+                    <h1 class="text-4xl lg:text-6xl font-extrabold font-cute text-darkPurple leading-tight">
+                        Navigate the Digital World with <span class="girly-text-gradient">Confidence!</span> ✨
+                    </h1>
+                    <p class="text-gray-600 text-lg leading-relaxed">
+                        Welcome to <span class="font-bold text-purple-600">CyberSafe</span>—your cozy aesthetic hub to learn about phishing protection, unbreakable passphrases, digital privacy, and online ethics. Designed for students who love both style and smarts!
+                    </p>
+                    <div class="flex flex-wrap justify-center lg:justify-start gap-4 pt-2">
+                        <button onclick="switchTab('modules')" class="girly-gradient text-white px-8 py-3.5 rounded-full font-bold shadow-lg hover:opacity-90 transition transform hover:scale-105 flex items-center space-x-2">
+                            <span>Explore Modules</span> <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                        <button onclick="switchTab('quiz')" class="bg-white text-purple-600 border-2 border-purple-200 px-8 py-3.5 rounded-full font-bold shadow-sm hover:bg-purple-50 transition transform hover:scale-105 flex items-center space-x-2">
+                            <span>Take a Quiz</span> <i class="fa-solid fa-heart"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="lg:w-5/12 mt-10 lg:mt-0 z-10 flex justify-center">
+                    <div class="relative w-72 h-72 sm:w-80 sm:h-80 bg-gradient-to-tr from-pink-200 via-purple-200 to-blue-200 rounded-3xl p-4 shadow-xl flex items-center justify-center transform rotate-3 hover:rotate-0 transition duration-500">
+                        <div class="absolute inset-2 bg-white/80 backdrop-blur-sm rounded-2xl flex flex-col items-center justify-center p-6 text-center space-y-4">
+                            <div class="w-20 h-20 rounded-2xl girly-gradient flex items-center justify-center text-white text-4xl shadow-md animate-bounce">
+                                <i class="fa-solid fa-shield-cat"></i>
+                            </div>
+                            <h3 class="font-cute font-bold text-xl text-darkPurple">CyberKitty Guard</h3>
+                            <p class="text-xs text-gray-500">"Never click suspicious links from strangers, bestie! Always verify the sender."</p>
+                            <span class="text-xs bg-purple-100 text-purple-700 px-3 py-1 rounded-full font-semibold">Tip of the Day 💡</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sliding Trivia Carousel Section -->
+            <div class="glass-card rounded-3xl p-8 relative overflow-hidden">
+                <div class="flex flex-col md:flex-row items-center justify-between mb-6">
+                    <div>
+                        <span class="text-xs font-bold text-pink-600 bg-pink-100 px-3 py-1 rounded-full uppercase tracking-wider">🧠 Brain Candy</span>
+                        <h2 class="text-2xl lg:text-3xl font-bold font-cute text-darkPurple mt-2">Cybersecurity Trivia Carousel</h2>
+                    </div>
+                    <div class="flex items-center space-x-2 mt-4 md:mt-0">
+                        <button onclick="prevTrivia()" class="w-10 h-10 rounded-full bg-white border border-pink-200 flex items-center justify-center text-pink-600 hover:bg-pink-50 transition shadow-sm">
+                            <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+                        <span id="triviaIndicator" class="text-sm font-semibold text-gray-600 px-2">1 / 5</span>
+                        <button onclick="nextTrivia()" class="w-10 h-10 rounded-full bg-white border border-pink-200 flex items-center justify-center text-pink-600 hover:bg-pink-50 transition shadow-sm">
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+                        <button onclick="toggleAutoPlay()" id="autoPlayBtn" class="ml-2 text-xs bg-purple-100 text-purple-700 px-3 py-2 rounded-full font-bold hover:bg-purple-200 transition">
+                            <i class="fa-solid fa-play mr-1"></i> Auto-Play
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Carousel Card Container -->
+                <div id="triviaCardContainer" class="bg-gradient-to-r from-pink-50 via-purple-50 to-blue-50 rounded-2xl p-6 md:p-8 border border-pink-200/60 shadow-inner transition-all duration-300">
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 rounded-2xl girly-gradient flex-shrink-0 flex items-center justify-center text-white text-xl shadow-md" id="triviaIcon">
+                            <i class="fa-solid fa-lightbulb"></i>
+                        </div>
+                        <div class="space-y-2">
+                            <span class="text-xs font-bold text-purple-600 uppercase tracking-widest" id="triviaCategory">Did You Know?</span>
+                            <h3 class="text-xl font-bold font-cute text-darkPurple" id="triviaTitle">Loading Trivia...</h3>
+                            <p class="text-gray-600 text-base leading-relaxed" id="triviaDescription">Please wait while we load fun cybersecurity facts for you!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Stats & Highlights -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="glass-card rounded-3xl p-6 flex items-center space-x-4">
+                    <div class="w-14 h-14 rounded-2xl bg-pink-100 text-pink-600 flex items-center justify-center text-2xl">
+                        <i class="fa-solid fa-user-shield"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-2xl font-bold font-cute text-darkPurple">95%</h4>
+                        <p class="text-xs text-gray-500 font-medium">Of security breaches are caused by human error.</p>
+                    </div>
+                </div>
+                <div class="glass-card rounded-3xl p-6 flex items-center space-x-4">
+                    <div class="w-14 h-14 rounded-2xl bg-purple-100 text-purple-600 flex items-center justify-center text-2xl">
+                        <i class="fa-solid fa-envelope-open-text"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-2xl font-bold font-cute text-darkPurple">3.4 Billion</h4>
+                        <p class="text-xs text-gray-500 font-medium">Phishing emails sent worldwide every single day.</p>
+                    </div>
+                </div>
+                <div class="glass-card rounded-3xl p-6 flex items-center space-x-4">
+                    <div class="w-14 h-14 rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center text-2xl">
+                        <i class="fa-solid fa-face-smile-wink"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-2xl font-bold font-cute text-darkPurple">100% Fun</h4>
+                        <p class="text-xs text-gray-500 font-medium">Learning cyber safety the aesthetic student way.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== TAB 2: LEARNING MODULES ==================== -->
+        <section id="tab-modules" class="tab-content hidden space-y-8">
+            <div class="text-center max-w-2xl mx-auto space-y-3">
+                <span class="text-xs font-bold text-pink-600 bg-pink-100 px-3 py-1 rounded-full uppercase tracking-wider">📚 Knowledge Hub</span>
+                <h2 class="text-3xl font-bold font-cute text-darkPurple">Cybersecurity Learning Modules</h2>
+                <p class="text-gray-600">Master essential online safety skills through our bite-sized, aesthetic guides tailored for students.</p>
+            </div>
+
+            <!-- Modules Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Module 1 -->
+                <div class="glass-card rounded-3xl p-6 flex flex-col justify-between hover:shadow-xl transition duration-300">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 rounded-2xl bg-pink-100 text-pink-600 flex items-center justify-center text-xl">
+                                <i class="fa-solid fa-fish"></i>
+                            </div>
+                            <span class="text-xs font-bold bg-pink-100 text-pink-700 px-3 py-1 rounded-full">Module 01</span>
+                        </div>
+                        <h3 class="text-xl font-bold font-cute text-darkPurple mb-2">Phishing & Social Engineering</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                            Spot fake links, urgent scare tactics, and impersonation scams in your emails, DMs, and text messages before you click!
+                        </p>
+                    </div>
+                    <button onclick="openModuleDetail('phishing')" class="w-full bg-pink-50 text-pink-600 border border-pink-200 py-2.5 rounded-2xl font-bold hover:bg-pink-100 transition flex items-center justify-center space-x-2">
+                        <span>Read Lesson</span> <i class="fa-solid fa-book-open text-xs"></i>
+                    </button>
+                </div>
+
+         
